@@ -11,6 +11,16 @@ class AdminTournamentsController extends MvcAdminController {
         $this->create_or_save();
     }
 
+    public function close_registration() {
+        $this->verify_id_param();
+        $this->set_object();
+        $this->object->open_for_registration = 0;
+        $this->model->save($this->object);
+        // TODO: Serial's  ranking and and insert into tournament
+        $url = MvcRouter::admin_url(array('controller' => $this->name, 'action' => 'edit', 'id' => $this->object->id));
+        $this->redirect($url);
+    }
+
     public function edit() {
         $this->verify_id_param();
         $this->set_series();

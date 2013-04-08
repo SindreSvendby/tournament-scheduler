@@ -17,7 +17,9 @@ if (empty($results)) {
         echo '</select>';
         echo '<input name="points[]" value="' . $result->points . '">';
         echo display_team($result->team);
-        echo '<span class="delete-result"> <a href=' . get_admin_url() . 'admin.php/?page=mvc_results-delete&id=' . $result->id . '&tournament=' . $tournament->id . '>Remove</a></span>';
+        if($tournament->open_for_registration) {
+            echo '<span class="delete-result"> <a href=' . get_admin_url() . 'admin.php/?page=mvc_results-delete&id=' . $result->id . '&tournament=' . $tournament->id . '>Remove</a></span>';
+        }
         echo 'Meldt på av ';
         $signedUpUser = get_user_by('id', $result->signedUpBy);
         echo '<span class="signedUpBy">'.$signedUpUser->display_name.'</span> ';
@@ -27,9 +29,16 @@ if (empty($results)) {
     echo "</form>";
 }
 
-$this->render_view('admin/results/_signup_teams', array('locals' =>
-array('tournament' => $tournament,
-    'availablePlayers' => $availablePlayers)));
+if($tournament->open_for_registration) {
+    $this->render_view('admin/results/_signup_teams', array('locals' =>
+    array('tournament' => $tournament,
+        'availablePlayers' => $availablePlayers)));
+    $url = MvcRouter::admin_url(array('controller' => 'tournaments', 'action' => 'close_registration', 'id' => $tournament->__id));
+    echo '<a href="'.$url.'">Close Registration</a>';
+} else {
+
+}
+
 
 
 

@@ -3,7 +3,7 @@
 class TournamentSchedulerLoader extends MvcPluginLoader
 {
 
-    var $db_version = '5.4.2';
+    var $db_version = '0.5.5.A';
     var $tables = array();
 
     function activate()
@@ -122,6 +122,7 @@ class TournamentSchedulerLoader extends MvcPluginLoader
                         location_id mediumint(9) NOT NULL,
                         details text,
                         final_seeding text,
+                        open_for_registration int(1) default 1,
                         price int(11) NOT NULL,
                         tournament_responsible_id mediumint(9) NOT NULL,
                         maximum_teams int(11) NOT NULL,
