@@ -29,7 +29,7 @@ MvcConfiguration::append(array(
     )
 ));
 
-includeRecursive(dirname(__FILE__) . "/../logic/");
+includeRecursive(dirname(__FILE__) . "/../src/");
 includeRecursive(dirname(__FILE__) . "/../views/util/");
 
 add_action('mvc_admin_init', 'tournament_scheduler_on_mvc_admin_init');

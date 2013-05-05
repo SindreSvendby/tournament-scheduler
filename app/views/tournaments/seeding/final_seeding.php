@@ -1,3 +1,8 @@
+<?php
+/**
+ * $tournament Tournament
+*/
+?>
 <h2>Final Seeding <?php echo $tournament->name ?></h2>
 
 
@@ -9,6 +14,6 @@ if(empty($tournament->final_seeding)):
 <?
 endif;
 foreach($tournament->results as $result):
-    $result->
+    print_a($result);
 endforeach;
 ?>
