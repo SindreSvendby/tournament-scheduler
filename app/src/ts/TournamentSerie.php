@@ -3,5 +3,5 @@
 interface TournamentSerie
 {
 
-    public function rankingleague()
+    public function rankingleague();
 }
