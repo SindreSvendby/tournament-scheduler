@@ -16,16 +16,27 @@ class SignupValidator
         $current_user = wp_get_current_user();
         //Todo: fix hack to let editor and greater add team. Should create our own capabilties.
         if((int) $current_user->ID != (int) $player_id1 &&   !current_user_can( 'delete_others_pages' )) {
-            throw new UnexpectedValueException("player is not equal to the current user logged in");
+            throw new \UnexpectedValueException("player is not equal to the current user logged in");
         }
 
         if(in_array($player_id1, $player_ids)) {
-            throw new UnexpectedValueException("Same person");
+            throw new \UnexpectedValueException("Same person");
+        }
+
+        if(in_array($player_id1, $player_ids)) {
+            throw new \UnexpectedValueException("Same person");
         }
 
         $this->ifUserIsSignedUpThrowError($player_id1);
         foreach($player_ids as $player_id):
             $this->ifUserIsSignedUpThrowError($player_id);
+        endforeach;
+
+        foreach($player_ids as $player_id):
+            if($player_id < 0) {
+                echo "Vennligst velg en partner";
+                throw new \UnexpectedValueException("Vennligst velg en partner");
+            }
         endforeach;
     }
 
@@ -48,7 +59,7 @@ class SignupValidator
 
         if ($player_count > 0) {
             $user = get_user_by('id', $player_id);
-            throw new UnexpectedValueException($user->display_name . " is already signed up for this tournament");
+            throw new \UnexpectedValueException($user->display_name . " is already signed up for this tournament");
         }
     }
 }

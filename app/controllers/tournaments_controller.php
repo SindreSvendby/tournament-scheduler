@@ -1,6 +1,7 @@
 <?php
 
 use \ts\tournament\TournamentManager;
+use \ts\tournament\TournamentResultManager;
 
 class TournamentsController extends MvcPublicController
 {
@@ -9,7 +10,7 @@ class TournamentsController extends MvcPublicController
         $player_id1 = (int) $_POST['player_id1'];
         $player_ids = (array) $_POST['player_id2'];
         $tournament_id = (int) $_POST['tournament_id'];
-        $signupVaildator = new \ts\tournament\TournamentResultManager($tournament_id);
+        $signupVaildator = new TournamentResultManager($tournament_id);
         $id = $signupVaildator->signup($player_id1, $player_ids);
         if(!empty($id) && $id > 0) {
             $this->set_flash('notice', 'Du er meld på turneringen!');

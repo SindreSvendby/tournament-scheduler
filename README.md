@@ -3,8 +3,12 @@ tournament-scheduler
 
 Tournament plugin for creating beach volleyball tournaments and letting wordpress user signup to the different tournaments
 
+==== New in version 0.5.6.1 ===
+ * fixed problems with signing up.
+
+
 ==== New in version 0.5.6 ===
- * Restructured code to fix problems related to autoloading and unix.
+ * Added namespace and autoloading to fix problems related to autoloading and unix.
 
 ==== New in version 0.5.5 ===
 

@@ -41,7 +41,7 @@ class TournamentManager
         $excludeList[] = $this->currentUserId;
         $this->availablePlayers = $this->removeUsers($this->users, $excludeList);
 
-        $options = array();
+        $options = array('-1' => 'Velg spiller:');
         foreach($this->availablePlayers as $player) {
             $options[$player->ID] = $player->display_name;
         }
