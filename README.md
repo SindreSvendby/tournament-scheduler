@@ -6,6 +6,7 @@ Tournament plugin for creating beach volleyball tournaments and letting wordpres
 ==== New in version 0.5.5 ===
 
  * Added the ability to close a tournament for registration
+ * Tournament list is sorted by date, so that closed in time is first
 
 ==== New in version 0.5.4.2 ===
  * Added admin menu link from public tournament page.
