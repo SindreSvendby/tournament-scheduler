@@ -11,6 +11,7 @@
                 <td>Turnering</td>
                 <td>Påmelding</td>
             </tr>
+        <?php if(!empty($objects)): ?>
         <?php foreach ($objects as $object): ?>
             <?php if ($object->date >= date("Y-m-d H:i:s")){ ?>
                 <tr>
@@ -18,6 +19,10 @@
                 </tr>
             <?php } ?>
         <?php endforeach; ?>
+        <?php
+        else:
+            echo "Ingen turneringer registert";
+        endif; ?>
         </table>
     </div>
 
