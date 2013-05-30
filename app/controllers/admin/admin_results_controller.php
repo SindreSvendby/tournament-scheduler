@@ -1,5 +1,9 @@
 <?php
 
+use ts\tournament\TournamentResultManager;
+use ts\tournament\TournamentManager;
+use ts\team\TeamManager;
+
 class AdminResultsController extends MvcAdminController {
 
     var $default_columns = array('id', 'name');

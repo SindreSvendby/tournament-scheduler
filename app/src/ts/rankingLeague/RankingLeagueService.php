@@ -1,7 +1,5 @@
 <?php
-
-
-namespace ts;
+namespace ts\rankingLeague;
 
 
 interface RankingLeagueService {

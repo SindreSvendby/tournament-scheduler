@@ -1,5 +1,7 @@
 <?php
 
+use ts\player\PlayerManager;
+
 class PlayersController extends MvcPublicController {
     public function index() {
         $users = get_users();

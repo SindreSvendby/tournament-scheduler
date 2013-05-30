@@ -1,5 +1,6 @@
 <?php
 
+
 class TournamentSchedulerLoader extends MvcPluginLoader
 {
 
@@ -8,7 +9,6 @@ class TournamentSchedulerLoader extends MvcPluginLoader
 
     function activate()
     {
-
         // This call needs to be made to activate this app within WP MVC
         $this->activate_app(__FILE__);
         // Perform any databases modifications related to plugin activation here, if necessary
@@ -25,6 +25,7 @@ class TournamentSchedulerLoader extends MvcPluginLoader
                 update_option($tournament_scheduler_db_version, $this->db_version);
             }
         }
+
     }
 
     public function updateDatabaseSchema()

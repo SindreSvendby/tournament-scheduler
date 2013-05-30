@@ -1,8 +1,5 @@
 <?php
-
-
-namespace ts;
-
+namespace ts\rankingLeague;
 
 class RankingLeagueServiceImpl implements RankingLeagueService {
     /**

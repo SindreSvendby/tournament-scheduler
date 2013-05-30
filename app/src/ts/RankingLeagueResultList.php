@@ -1,7 +1,7 @@
 <?php
 namespace ts;
 
-interface RankingLeagueResultList extends RankingLeague {
+interface RankingLeagueResultList extends rankingLeague\RankingLeague {
 
     /**
      * @return RankingLeagueRanking[]

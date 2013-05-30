@@ -1,4 +1,10 @@
 <?php
+
+
+add_action('mvc_admin_init', 'load_classes');
+add_action('mvc_public_init', 'load_classes');
+
+
 MvcConfiguration::set(array(
     'Debug' => false
 ));
@@ -30,8 +36,10 @@ MvcConfiguration::append(array(
     )
 ));
 
-includeRecursive(dirname(__FILE__) . "/../src/");
-includeRecursive(dirname(__FILE__) . "/../views/util/");
+function load_classes() {
+    include dirname(__FILE__) . "/../src/MyAutoloader.php";
+    include dirname(__FILE__) . "/../src/function/util.php";
+}
 
 add_action('mvc_admin_init', 'tournament_scheduler_on_mvc_admin_init');
 add_action('mvc_public_init', 'tournament_scheduler_on_mvc_public_init');
@@ -46,25 +54,4 @@ function tournament_scheduler_on_mvc_public_init($options)
 {
     wp_register_style('mvc-style_tournament-scheduler-public', mvc_css_url('tournament-scheduler', 'tournament-scheduler'));
     wp_enqueue_style('mvc-style_tournament-scheduler-public');
-}
-
-
-function includeRecursive($directory)
-{
-    $dir = new RecursiveDirectoryIterator($directory,
-        FilesystemIterator::SKIP_DOTS);
-
-    // Flatten the recursive iterator, folders come before their files
-    $it = new RecursiveIteratorIterator($dir,
-        RecursiveIteratorIterator::SELF_FIRST);
-
-// Basic loop displaying different messages based on file or folder
-    foreach ($it as $fileinfo) {
-        //echo "$fileinfo:" . $fileinfo . "<br/>";
-        if ($fileinfo->isFile()) {
-            $file = $directory . $it->getSubPath() . "/" . $fileinfo->getFilename();
-            include_once($file);
-            //echo "include" .$file;
-        }
-    }
 }

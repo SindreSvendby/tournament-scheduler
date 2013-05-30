@@ -1,4 +1,5 @@
 <?php
+namespace ts\seeding;
 
 /**
  * Class SeedingTeamDao

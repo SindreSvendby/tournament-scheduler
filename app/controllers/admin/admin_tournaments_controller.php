@@ -1,5 +1,8 @@
 <?php
 
+use ts\tournament\TournamentManager;
+use ts\tournament\TournamentTeamManager;
+
 class AdminTournamentsController extends MvcAdminController
 {
 

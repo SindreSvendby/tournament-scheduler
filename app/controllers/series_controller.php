@@ -1,5 +1,7 @@
 <?php
 
+use ts\seeding\SeedingManager;
+
 class SeriesController extends MvcPublicController {
 
     public function show() {
