@@ -12,6 +12,7 @@ MvcConfiguration::append(array(
             'delete' => array('capability' => 'delete_others_pages'),
             'results' => array('capability' => 'delete_others_pages'),
             'close_registration' => array('capability' => 'delete_others_pages', 'in_menu' => false),
+            'open_registration' => array('capability' => 'delete_others_pages', 'in_menu' => false),
             'capability' => 'delete_others_pages'),
         'teams' => array('hide_menu' => true),
         'matches' => array('hide_menu' => true),
@@ -59,9 +60,11 @@ function includeRecursive($directory)
 
 // Basic loop displaying different messages based on file or folder
     foreach ($it as $fileinfo) {
+        //echo "$fileinfo:" . $fileinfo . "<br/>";
         if ($fileinfo->isFile()) {
             $file = $directory . $it->getSubPath() . "/" . $fileinfo->getFilename();
             include_once($file);
+            //echo "include" .$file;
         }
     }
 }

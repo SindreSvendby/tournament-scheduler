@@ -29,15 +29,16 @@ if (empty($results)) {
     echo "</form>";
 }
 
-if($tournament->open_for_registration) {
+if($tournament->open_for_registration == 1):
     $this->render_view('admin/results/_signup_teams', array('locals' =>
     array('tournament' => $tournament,
         'availablePlayers' => $availablePlayers)));
     $url = MvcRouter::admin_url(array('controller' => 'tournaments', 'action' => 'close_registration', 'id' => $tournament->__id));
     echo '<a href="'.$url.'">Close Registration</a>';
-} else {
-
-}
+else:
+    $url = MvcRouter::admin_url(array('controller' => 'tournaments', 'action' => 'open_registration', 'id' => $tournament->__id));
+    echo 'Registration is closed, <a href="'.$url.'">Open Registration</a>';
+endif;
 
 
 

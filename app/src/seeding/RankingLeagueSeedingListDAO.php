@@ -2,10 +2,21 @@
 
 class RankingLeagueSeedingListDAO
 {
+    private $seedingPlayerList;
+
+    function __construct($rankingleague_id)
+    {
+        $this->rankingleague_id  = $rankingleague_id;
+    }
+
+
     /**
      * @return RankingLeagueSeedingList
      */
     public function getSeedingList() {
+        if($this->seedingPlayerList != null ) {
+            return $this->seedingPlayerList;
+        }
         global $wpdb;
         $wp = $wpdb->prefix;
 
@@ -22,6 +33,10 @@ class RankingLeagueSeedingListDAO
           GROUP BY player_id
           ORDER BY points DESC";
         $results = $wpdb->get_results($sql);
+        //TODO: Fix this $result most likely empty.
+        print(get_class($this));
+        print_a($results);
+        exit;
         $seedingPlayerList = new SeedingPlayerList($results);
         return $seedingPlayerList->seedingList;
     }

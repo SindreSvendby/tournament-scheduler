@@ -4,18 +4,19 @@
 
 class RankingLeagueSeedingList implements SeedingList
 {
+    public $teams = array();
 
     public function addTeam(SeedingTeam $team) {
-
+        $this->teams[] =  $team;
     }
 
     public function seedingTeams()
     {
-        // TODO: Implement seedingTeams() method.
+        return $this->teams;
     }
 
     public function count()
     {
-        // TODO: Implement count() method.
+        return count($this->teams);
     }
 }

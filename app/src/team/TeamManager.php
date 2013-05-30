@@ -2,28 +2,26 @@
 
 class TeamManager
 {
-    private $teamsModel;
     public  $team_id;
 
     /**
      * @var array id of players
      */
-    public $players;
+    public $players = array();
     public $team_name;
 
     private function __construct($team_id, $rankingleague_id) {
         $this->rankingleague_id = $rankingleague_id;
-        $this->teamsModel = mvc_model("Team");
-        $team = $this->teamsModel->find_one_by_id($team_id);
+        $teamsModel = mvc_model("Team");
+        $team = $teamsModel->find_one_by_id($team_id);
         if($team == null) {
             throw new UnexpectedValueException("The id for Team do not exist:" . $team_id);
         }
+
         $this->team_id = $team_id;
         $this->team_name = $team->name;
-
         global $wpdb;
         $results = $wpdb->get_results("Select * from " . $wpdb->prefix . "playersinteam where team_id = " . $team_id);
-        $this->players = array();
         foreach($results as  $result):
             $this->players[] = $result->player_id;
         endforeach;
