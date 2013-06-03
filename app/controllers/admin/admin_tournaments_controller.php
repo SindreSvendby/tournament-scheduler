@@ -45,8 +45,8 @@ class AdminTournamentsController extends MvcAdminController
 
     private  function __internal__save($object) {
         //TODO: This should not be hardcoded
-        $fields = ['id', 'name', 'serie_id', 'date', 'location_id', 'details', 'final_seeding',
-            'price', 'tournament_responsible_id', 'maximum_teams', 'open_for_registration'];
+        $fields = array('id', 'name', 'serie_id', 'date', 'location_id', 'details', 'final_seeding',
+            'price', 'tournament_responsible_id', 'maximum_teams', 'open_for_registration');
         $data = array();
         foreach($fields as $field):
             $data[$field] = $object->$field;
