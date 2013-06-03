@@ -12,7 +12,7 @@
                 <td>Påmelding</td>
             </tr>
         <?php if(!empty($objects)): ?>
-        <?php foreach ($objects as $object): ?>
+        <?php foreach (array_reverse($objects) as $object): ?>
             <?php if ($object->date >= date("Y-m-d H:i:s")){ ?>
                 <tr>
                     <?php $this->render_view('_item', array('locals' => array('tournament' => $object))); ?>
