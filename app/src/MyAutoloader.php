@@ -8,15 +8,14 @@ class MyAutoloader
 {
     public static function load($className)
     {
-        $fullpath = dirname(__FILE__) . "\\" . $className . ".php";
-            if(file_exists($fullpath)):
-                require $fullpath;
-                if(class_exists($className)):
-                    return true;
-                endif;
+        $classpath = str_replace('\\', DIRECTORY_SEPARATOR, $className);
+        $filepath = dirname(__FILE__) . DIRECTORY_SEPARATOR . $classpath . ".php";
+        if (file_exists($filepath)):
+            require $filepath;
+            if (class_exists($className)):
+                return true;
             endif;
+        endif;
         return false;
     }
 }
-
-
