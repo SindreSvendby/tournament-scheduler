@@ -1,7 +1,7 @@
 <?php
 if (!$tournament->open_for_registration == 0) {
     ?>
-    <h3>Påmelding <span class="arrows"> >> </span></h3>
+    <h3>Påmelding <span class="arrows"> » </span></h3>
 
     <p>
         <?php echo count($seedingList); ?> av <?php echo $tournament->maximum_teams ?> lag er påmeldt.
