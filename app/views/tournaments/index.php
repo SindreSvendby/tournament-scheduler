@@ -10,23 +10,39 @@
                 <td>Når</td>
                 <td>Turnering</td>
             </tr>
-        <?php foreach ($objects as $object): ?>
-            <?php $exist = false; ?>
-            <?php if ($object->date >= date("Y-m-d H:i:s")){ ?>
-                <?php $exist = true; ?>
-                <tr>
-                    <?php $this->render_view('_item', array('locals' => array('tournament' => $object))); ?>
-                </tr>
+            <?php
+            $exist = false;
+            foreach ($objects as $object):
+                if ($object->date >= date("Y-m-d H:i:s")) {
+                    $exist = true;
+                    echo "<tr>";
+                    $this->render_view('_item', array('locals' => array('tournament' => $object)));
+                    echo "</tr>";
+                }
+            endforeach;
+            if ($exist == false) {
+                ?>
+                <td colspan="2">Det er ingen kommende turneringer.</td>
             <?php } ?>
-        <?php endforeach; ?>
-        <?php if ($exist == false){ ?>
-            <td colspan="2">Det er ingen kommende turneringer.</td>
-        <?php } ?>
+        </table>
+    </div>
+    <div class="block full">
+        <h3>Spilte turneringer <span class="arrows">» </span></h3>
+        <table>
+            <tr class="head">
+                <td>Når</td>
+                <td>Turnering</td>
+            </tr>
+            <?php foreach ($objects as $object): ?>
+                <?php if ($object->date < date("Y-m-d H:i:s")){ ?>
+                    <tr>
+                        <?php $this->render_view('_item', array('locals' => array('tournament' => $object))); ?>
+                    </tr>
+                <?php } ?>
+            <?php endforeach; ?>
         </table>
     </div>
 
-	<?php $this->render_view('_item', array('locals' => array('object' => $object))); ?>
-
-<?php endforeach; ?>
+    <?php $this->render_view('_item', array('locals' => array('object' => $object))); ?>
 
 <?php echo $this->pagination(); ?>

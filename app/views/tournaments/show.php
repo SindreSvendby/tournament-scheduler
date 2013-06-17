@@ -38,7 +38,9 @@
             ));
         ?>
     </div>
+
     <div style="clear: both;"></div>
+    <?php if ($tournament->open_for_registration == 1) { ?>
     <div class="block full">
         <?php
             $this->render_view("_signup_teams",
@@ -48,6 +50,7 @@
             )));
         ?>
     </div>
+    <?php } else { ?>
     <div class="block full">
         <?php
         $this->render_view("_tournament_result",
@@ -57,4 +60,5 @@
             )));
         ?>
     </div>
+    <?php }; ?>
 </div>
