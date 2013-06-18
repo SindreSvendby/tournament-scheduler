@@ -1,30 +1,42 @@
 <?php
 echo "<h2>" . $tournament->name . "</h2>";
-
+echo "<h3>Results</h3>";
 if (empty($results)) {
     echo "<p>Ingen lag er registert til denne turneringen</p>";
 } else {
-    echo "<h3>Results</h3>";
     echo "<form method='POST' action='" . $form_url . "'>";
     $numberOfTeamsSignedUp = count($results);
+    echo "<table><thead><td>Place</td><td>Points</td><td>Team</td>";
+    if($tournament->open_for_registration) {
+        echo '<td>Remove</td>';
+    }
+    echo '<td>Registrert</td></thead>';
     foreach ($results as $result):
-        echo "<p>place | points | team</p>";
+        echo '<tr>';
         echo '<input name="id[]" type="hidden" value="' . $result->id . '">';
-        echo '<select name="place[]">';
+        echo '<td><select name="place[]">';
         for ($i = 1; $i <= $numberOfTeamsSignedUp; $i++):
-            echo '<option>' . $i . '</option>';
+            if($i == $result->place):
+                echo '<option selected="selected">' . $i . '</option>';
+            else:
+                echo '<option>' . $i . '</option>';
+            endif;
         endfor;
-        echo '</select>';
-        echo '<input name="points[]" value="' . $result->points . '">';
-        echo display_team($result->team);
+        echo '</select></td>';
+        echo '<td><input name="points[]" value="' . $result->points . '"></td>';
+        echo '<td>' .display_team($result->team) . '</td>';
         if($tournament->open_for_registration) {
-            echo '<span class="delete-result"> <a href=' . get_admin_url() . 'admin.php/?page=mvc_results-delete&id=' . $result->id . '&tournament=' . $tournament->id . '>Remove</a></span>';
+            echo '<td><span class="delete-result"> <a href=' . get_admin_url() . 'admin.php/?page=mvc_results-delete&id=' . $result->id . '&tournament=' . $tournament->id . '>Remove</a></span></td>';
         }
-        echo 'Meldt på av ';
-        $signedUpUser = get_user_by('id', $result->signedUpBy);
-        echo '<span class="signedUpBy">'.$signedUpUser->display_name.'</span> ';
-        echo 'den <span class="signedUpDate">'.$result->signedUpDate.'</span>';
+        echo '<td>';
+            echo 'Meldt på av ';
+            $signedUpUser = get_user_by('id', $result->signedUpBy);
+            echo '<span class="signedUpBy">'.$signedUpUser->display_name.'</span> ';
+            echo 'den <span class="signedUpDate">'.$result->signedUpDate.'</span>';
+        echo '</td>';
+        echo '</tr>';
     endforeach;
+    echo "</table>";
     echo "<br/> <input type='submit'>";
     echo "</form>";
 }
