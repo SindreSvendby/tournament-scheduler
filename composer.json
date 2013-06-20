@@ -1,0 +1,14 @@
+{
+    "name": "sindresvendby/tournament-scheduler",
+    "description": "Tournament system for arranging a series of beach volleyball tournaments",
+    "minimum-stability": "? not sure what this is",
+    "authors": [
+        {
+            "name": "Sindre Øye Svendby",
+            "email": "sinsvend@gmail.com"
+        }
+    ],
+    "dependecyies": [
+        "PHP"
+    ]
+}
