@@ -10,9 +10,8 @@
 -- bruker du vil fjerne er her representert ved og ha id 1
 -- brukeren du vil at skal overta er her representert ved og ha id 2
 
-
 -- 1. Sjekke om gammel bruker id  er registert i wp_playersinteam, hvis ikke. ingenting og gjør
-select *  from test.wp_playersinteam where player_id = 1
+select *  from test.wp_playersinteam where player_id = 1;
 -- 2. Sjekke om gammel bruker id er registert med en lik partner som ny bruker id.
 select distinct player_id from test.wp_playersinteam where
   team_id IN (Select team_id from test.wp_playersinteam where player_id  = 1)
@@ -28,11 +27,26 @@ select distinct player_id from test.wp_playersinteam where
 UPDATE test.wp_playersinteam SET player_id = 2 where player_id = 1;
 
 -- 3b. Hvis ny brukeren er registert med samme partner må du bytte ut alle tilfellene av team_id med
--- ny team_id som ny bruker id OG slette raden i wp_playersinteam.
+-- ny team_id som ny bruker id OG slette raden i wp_playersinteam + wp_teams
+
 Select r.team_id, p.team_id from wp_results r , wp_playersinteam p
 where p.team_id = r.team_id
 and p.team_id IN (Select team_id from wp_playersinteam where player_id = 1)
 and p.player_id != 1;
+
+-- Finner team_id duplicaten som skal slettes, men må først bruke iden til og oppdattere results
+select team_id from test.wp_playersinteam main where main.player_id IN
+                                                     (select distinct player_id from test.wp_playersinteam where
+                                                       team_id IN (Select team_id from test.wp_playersinteam where player_id  = 1)
+                                                       and player_id != 1
+                                                       and player_id
+                                                           IN (
+                                                         select distinct player_id from test.wp_playersinteam where
+                                                           team_id IN (Select team_id from test.wp_playersinteam where player_id  = 2)
+                                                           and player_id != 2))
+                                                     and team_id IN (Select team_id from test.wp_playersinteam where player_id  = 1)
+
+
 
 
 DELETE test.wp_playersinteam where player_id = 1;
