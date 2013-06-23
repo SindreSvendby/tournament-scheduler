@@ -7,6 +7,8 @@ class TeamManager
 {
     public  $team_id;
 
+    protected $service;
+
     /**
      * @var array id of players
      */
@@ -14,6 +16,8 @@ class TeamManager
     public $team_name;
 
     private function __construct($team_id, $rankingleague_id) {
+        $this->service = new TeamService();
+
         $this->rankingleague_id = $rankingleague_id;
         $teamsModel = mvc_model("Team");
         $team = $teamsModel->find_one_by_id($team_id);
@@ -73,6 +77,10 @@ class TeamManager
 
     public  static function createTeam($players, $teamsModel)
     {
+        $id = $this->service->exist($players);
+        if($id != -1) {
+            return $id;
+        }
         global $wpdb;
         $prefix = $wpdb->prefix;
         $team = array(
@@ -124,7 +132,6 @@ class TeamManager
     public function getUsers() {
         foreach($this->players as $player_id):
             $users[] = get_user_by('id', $player_id);
-
         endforeach;
         return $users;
     }
