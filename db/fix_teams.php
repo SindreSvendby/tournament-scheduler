@@ -27,7 +27,7 @@ class TeamCorrecter
               FROM wp_playersinteam p
               GROUP BY  p.team_id) a
           GROUP BY a.team
-          HAVING count(a.team) > 2";
+          HAVING count(a.team) > 1";
         $duplicate_team_info = $this->run_statement($duplicate_team_info_sql);
 
         foreach ($duplicate_team_info as $team_info) {
@@ -64,6 +64,7 @@ class TeamCorrecter
 
     function run_statement($sql)
     {
+        echo $sql . "\n";
         $statement = $this->pdo->query($sql);
         $resultset = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $resultset;
@@ -71,14 +72,15 @@ class TeamCorrecter
 
     private function run_exec($sql)
     {
+        echo $sql . "\n";
         $rows_affected = $this->pdo->exec($sql);
         return ($rows_affected > 0);
     }
 }
 
-//$host=
-//$dbname=
-//$username=
-//$password=
-//$tc = new TeamCorrecter($host, $dbname, $username, $password);
-//$tc->fix_teams();
+$host="localhost";
+$dbname="test";
+$username="root";
+$password="";
+$tc = new TeamCorrecter($host, $dbname, $username, $password);
+$tc->fix_teams();
