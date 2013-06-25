@@ -8,7 +8,8 @@
             "email": "sinsvend@gmail.com"
         }
     ],
-    "dependecyies": [
-        "PHP"
+    "required-dev": [
+        { "PHPUnit/PHPUnit" : "*" },
+        { "Phing/Phing" : "*" }
     ]
 }
