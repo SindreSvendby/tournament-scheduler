@@ -43,6 +43,5 @@
         </table>
     </div>
 
-    <?php $this->render_view('_item', array('locals' => array('object' => $object))); ?>
 
 <?php echo $this->pagination(); ?>
