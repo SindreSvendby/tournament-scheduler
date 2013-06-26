@@ -43,7 +43,7 @@ class PlayerManager
             global $wpdb;
             $wp = $wpdb->prefix;
 
-            $sql = "SELECT rl.name name, sum( r.points ) points
+            $sql = "SELECT rl.id, rl.name name, sum( r.points ) points
                   FROM " . $wp . "rankingleagues rl, " . $wp . "series s, " . $wp . "tournaments t,
                        " . $wp . "results r, " . $wp . "teams team, " . $wp . "playersinteam pit
                   WHERE s.rankingleague_id = rl.id

@@ -1,12 +1,13 @@
 <h2>Players</h2>
 <?php
 if (empty($users)):
-    echo "ingen spillere registert";
+    echo "<p>Ingen spillere registert</p>";
 else:
     echo "<ul>";
     foreach ($users as $user):
-        echo "<ul>". display_tournament_user($user) . "</ul>";
+        echo "<li>". display_tournament_user($user) . "</li>";
     endforeach;
     echo "</ul>";
 endif;
+echo $this->pagination();
 ?>

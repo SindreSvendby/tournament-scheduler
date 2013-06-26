@@ -23,10 +23,6 @@ class SignupValidator
             throw new \UnexpectedValueException("Same person");
         }
 
-        if(in_array($player_id1, $player_ids)) {
-            throw new \UnexpectedValueException("Same person");
-        }
-
         $this->ifUserIsSignedUpThrowError($player_id1);
         foreach($player_ids as $player_id):
             $this->ifUserIsSignedUpThrowError($player_id);

@@ -3,25 +3,26 @@ namespace ts\tournament;
 
 use ts\signup\SignupValidator;
 use ts\team\TeamManager;
+use ts\team\TeamService;
 
 class TournamentResultManager
 {
     private $validator;
     private $resultModel;
+    private $teamService;
 
     public function __construct($tournamentId)
     {
         $this->validator = new SignupValidator($tournamentId);
         $this->resultModel = mvc_model("Result");
+        $this->teamService = new TeamService();
     }
 
-    public function signup($player_id1, $players)
+    public function signup($player_id1, $rest_of_the_players)
     {
-
-        $this->validator->isValid($player_id1, $players);
-        $teamModel = mvc_model("Team");
-        $players[] = $player_id1;
-        $team_id = TeamManager::createTeam($players, $teamModel);
+        $this->validator->isValid($player_id1, $rest_of_the_players);
+        $all_players = array_merge((array)$player_id1, $rest_of_the_players);
+        $team_id = $this->teamService->create($all_players);
         return $this->createResult($team_id);
     }
 

@@ -3,7 +3,6 @@
 
 namespace ts;
 
-
 class GenericDAO
 {
 
@@ -12,15 +11,19 @@ class GenericDAO
     private $dbname;
     private $username;
     private $password;
+    protected  $table_prefix;
 
     function __construct()
     {
+        global $wpdb;
         //TODO: Fix hardcoding
         //TODO: Do static
         $this->dbname = "test";
         $this->host = "localhost";
         $this->username = "root";
         $this->password = "";
+        $this->table_prefix = $wpdb->prefix;
+
         if ($this->pdo == null):
             $this->pdo = new \PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password);
         endif;
@@ -32,7 +35,6 @@ class GenericDAO
      */
     protected function fetchAll($sql)
     {
-        echo $sql . "\n";
         $statement = $this->pdo->query($sql);
         if (is_object($statement)):
             return $statement->fetchAll(\PDO::FETCH_ASSOC);

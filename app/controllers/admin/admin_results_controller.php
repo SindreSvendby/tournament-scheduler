@@ -95,16 +95,13 @@ class AdminResultsController extends MvcAdminController {
             'conditions' => array(
                 'tournament_id' => $id),
             'order' => 'place'));
-
+        $tournamentManager = new TournamentManager($tournament, get_current_user_id(), get_users());
         foreach($results as $result):
-            //TODO: rankingleague
-            $result->team = TeamManager::constructTeamByTeamId($result->team_id, null);
+            $rankingLeague = $tournamentManager->getRankingLeagueId();
+            $result->team = TeamManager::constructTeamByTeamId($result->team_id, $rankingLeague);
         endforeach;
 
         $form_url = get_admin_url() . "admin.php?page=mvc_results-save_results";
-
-        $tournamentManager = new TournamentManager($tournament, get_current_user_id(), get_users());
-
 
         $options = array('locals' =>
         array('results' => $results,

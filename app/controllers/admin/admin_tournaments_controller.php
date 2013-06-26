@@ -23,7 +23,7 @@ class AdminTournamentsController extends MvcAdminController
         $this->object->open_for_registration = 1;
         $this->__internal__save($this->object);
 
-        $url = MvcRouter::admin_url(array('controller' => $this->name, 'action' => 'edit', 'id' => $this->object->id));
+        $url = MvcRouter::admin_url(array('controller' => 'results', 'action' => 'edit_result', 'id' => $this->object->id));
         $this->redirect($url);
     }
 
@@ -33,13 +33,8 @@ class AdminTournamentsController extends MvcAdminController
         $this->set_object();
         $this->object->open_for_registration = 0;
         $this->__internal__save($this->object);
-        $tournamentManager = new TournamentManager($this->object, get_current_user_id(), get_users());
-        $tournamentTeamManager = new TournamentTeamManager($tournamentManager);
-        //$seedingList = $tournamentTeamManager->seedingList();
 
-        //$seedingList = new RankingLeagueSeedingListDAO();
-        //$seedingList->getSeedingList();
-        $url = MvcRouter::admin_url(array('controller' => $this->name, 'action' => 'edit', 'id' => $this->object->id));
+        $url = MvcRouter::admin_url(array('controller' => 'results', 'action' => 'edit_result', 'id' => $this->object->id));
         $this->redirect($url);
     }
 
@@ -52,8 +47,8 @@ class AdminTournamentsController extends MvcAdminController
             $data[$field] = $object->$field;
         endforeach;
         $responds = $this->model->save($data);
-
     }
+
     public function edit()
     {
         $this->verify_id_param();

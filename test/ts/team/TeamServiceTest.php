@@ -10,7 +10,7 @@ class TeamServiceTest
     public function exist_ids_entered_exist()
     {
         $service = new TeamService();
-        $result = $service->exist("4,7");
+        $result = $service->getTeamId("4,7");
         //Forventer 20
         echo __FUNCTION__ . ": " . $result;
     }
@@ -18,7 +18,7 @@ class TeamServiceTest
     public function exist_ids_entered_do_not_exist()
     {
         $service = new TeamService();
-        $result = $service->exist("43,425");
+        $result = $service->getTeamId("43,425");
         //Forventer -1
         echo __FUNCTION__ . ": " . $result;
 

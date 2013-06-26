@@ -12,7 +12,7 @@
             </tr>
             <?php
             $exist = false;
-            foreach ($objects as $object):
+            foreach (array_reverse($objects) as $object):
                 if ($object->date >= date("Y-m-d H:i:s")) {
                     $exist = true;
                     echo "<tr>";

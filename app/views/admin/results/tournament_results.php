@@ -1,4 +1,9 @@
 <?php
+$url = MvcRouter::admin_url(array('controller' => 'tournaments', 'action' => 'edit', 'id' => $tournament->__id));
+echo '<ul><li><a href="'.$url.'">Administrate Tournament</a></li>';
+$url = MvcRouter::public_url(array('controller' => 'tournaments', 'action' => 'show', 'id' => $tournament->__id));
+echo '<li><a href="'.$url.'">View Public Pages</a></li></ul>';
+
 echo "<h2>" . $tournament->name . "</h2>";
 echo "<h3>Results</h3>";
 if (empty($results)) {
@@ -6,27 +11,31 @@ if (empty($results)) {
 } else {
     echo "<form method='POST' action='" . $form_url . "'>";
     $numberOfTeamsSignedUp = count($results);
-    echo "<table><thead><td>Place</td><td>Points</td><td>Team</td>";
+    echo "<table><thead><td>Team</td>";
     if($tournament->open_for_registration) {
         echo '<td>Remove</td>';
+    } else {
+        echo "<td>Place</td><td>Points</td>";
     }
     echo '<td>Registrert</td></thead>';
     foreach ($results as $result):
         echo '<tr>';
-        echo '<input name="id[]" type="hidden" value="' . $result->id . '">';
-        echo '<td><select name="place[]">';
-        for ($i = 1; $i <= $numberOfTeamsSignedUp; $i++):
-            if($i == $result->place):
-                echo '<option selected="selected">' . $i . '</option>';
-            else:
-                echo '<option>' . $i . '</option>';
-            endif;
-        endfor;
-        echo '</select></td>';
-        echo '<td><input name="points[]" value="' . $result->points . '"></td>';
         echo '<td>' .display_team($result->team) . '</td>';
         if($tournament->open_for_registration) {
             echo '<td><span class="delete-result"> <a href=' . get_admin_url() . 'admin.php/?page=mvc_results-delete&id=' . $result->id . '&tournament=' . $tournament->id . '>Remove</a></span></td>';
+        } else {
+            echo '<input name="id[]" type="hidden" value="' . $result->id . '">';
+            echo '<td><select name="place[]">';
+            for ($i = 1; $i <= $numberOfTeamsSignedUp; $i++):
+                if($i == $result->place):
+                    echo '<option selected="selected">' . $i . '</option>';
+                else:
+                    echo '<option>' . $i . '</option>';
+                endif;
+            endfor;
+            echo '</select></td>';
+            echo '<td><input name="points[]" value="' . $result->points . '"></td>';
+
         }
         echo '<td>';
             echo 'Meldt på av ';
