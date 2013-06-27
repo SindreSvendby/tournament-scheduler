@@ -2,6 +2,7 @@
 namespace ts\seeding;
 
 use ts\rankingLeague\RankingLeagueServiceImpl;
+use ts\ranking\RankingPlayerList;
 
 class SeedingManager
 {
@@ -26,7 +27,7 @@ class SeedingManager
         global $wpdb;
         $wp = $wpdb->prefix;
 
-        $sql = "SELECT pit.player_id player_id, sum( r.points ) points, s.rankingleague_id
+        $sql = "SELECT pit.player_id player_id, sum( r.points ) points, s.rankingleague_id as id
           FROM ".$wp."rankingleagues rl, ".$wp."series s, ".$wp."tournaments t,
                ".$wp."results r, ".$wp."teams team, ".$wp."playersinteam pit
           WHERE s.rankingleague_id = rl.id
@@ -39,7 +40,7 @@ class SeedingManager
           GROUP BY player_id
           ORDER BY points DESC";
         $results = $wpdb->get_results($sql);
-        $seedingPlayerList = new SeedingPlayerList($results);
+        $seedingPlayerList = new RankingPlayerList($results);
         return $seedingPlayerList->seedingList;
 
     }

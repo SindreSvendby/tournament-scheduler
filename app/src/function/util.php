@@ -76,12 +76,17 @@ function display_link($object, $path) {
 }
 
 /**
- * @param $seeding ts\seeding\SeedingPlayer
+ * @param $ranking ts\ranking\RankingPlayer
  * @return string html link
  */
-function display_rankingleague_player_result_link($seeding) {
-    return "<a href=\"". site_url() . "/rankingleagues/player/" .$seeding->rankingleague_id . "/?player_id=".
-    $seeding->player->ID."\">" . $seeding->points . "</a>";
+function display_rankingleague_player_result_link($ranking) {
+    return "<a href=\"". site_url() . "/rankingleagues/player/" .$ranking->id . "/?player_id=".
+    $ranking->player->ID."\">" . $ranking->points . "</a>";
+}
+
+function display_serie_player_result_link($ranking) {
+    return "<a href=\"". site_url() . "/series/player/" .$ranking->id . "/?player_id=".
+    $ranking->player->ID."\">" . $ranking->points . "</a>";
 }
 
 function print_a($a) {

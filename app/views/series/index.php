@@ -1,4 +1,4 @@
-<h2>Rankingklasse</h2>
+<h2>Serier</h2>
 
 <ul>
 <?php foreach ($objects as $object): ?>

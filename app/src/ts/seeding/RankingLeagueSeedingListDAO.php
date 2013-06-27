@@ -35,10 +35,7 @@ class RankingLeagueSeedingListDAO
           ORDER BY points DESC";
         $results = $wpdb->get_results($sql);
         //TODO: Fix this $result most likely empty.
-        print(get_class($this));
-        print_a($results);
-        exit;
-        $seedingPlayerList = new SeedingPlayerList($results);
+        $seedingPlayerList = new RankingPlayerList($results);
         return $seedingPlayerList->seedingList;
     }
 }

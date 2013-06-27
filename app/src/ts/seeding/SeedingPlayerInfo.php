@@ -2,7 +2,7 @@
 namespace ts\seeding;
 
 /**
- * Extends the SeedingPlayer class.
+ * Extends the RankingPlayer class.
  */
 class SeedingPlayerInfo extends SeedingPlayer
 {
