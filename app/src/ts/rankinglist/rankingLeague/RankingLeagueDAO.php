@@ -25,8 +25,7 @@ class RankingLeagueDAO extends GenericDAO
                     and rl.id = $rankingleague_id
                     and pit.player_id = $player_id;
                     order by t.date DESC";
-        $statement = $this->fetchAll($sql);
-        return $statement->fetchAll();
+        return $this->fetchAll($sql);
     }
 
     /**
