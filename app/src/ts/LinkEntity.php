@@ -1,9 +1,10 @@
 <?php
-namespace ts\rankingLeague;
 
 
-interface RankingLeague
-{
+namespace ts;
+
+
+interface LinkEntity {
     public function name();
     public function id();
 }

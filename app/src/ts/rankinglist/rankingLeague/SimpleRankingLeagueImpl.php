@@ -1,12 +1,14 @@
 <?php
 
 
-namespace ts\rankingLeague;
+namespace ts\rankinglist\rankingLeague;
 
 
-class RankingLeagueImpl implements RankingLeague {
+class SimpleRankingLeagueImpl implements SimpleRankingLeague {
 
-    function __construct($id, $name) {
+
+    function __construct($id, $name)
+    {
         $this->id = $id;
         $this->name = $name;
     }
@@ -20,4 +22,6 @@ class RankingLeagueImpl implements RankingLeague {
     {
         return $this->id;
     }
+
+
 }

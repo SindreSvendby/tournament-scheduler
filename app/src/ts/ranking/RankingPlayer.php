@@ -8,7 +8,7 @@ class RankingPlayer
      */
     public $points;
     /**
-     * @var wordpress_user
+     * @var Object wordpress_user
      */
     public  $player;
 

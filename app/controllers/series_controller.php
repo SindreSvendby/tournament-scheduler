@@ -13,15 +13,14 @@ class SeriesController extends MvcPublicController {
     }
 
     function player(){
-        if(empty($this->params['id']) || empty($this->params['player_id'])) {
-            throw new UnexpectedValueException("params rankingleague_id and player_id needs to be set");
+        if(empty($this->params['player_id'])) {
+            throw new UnexpectedValueException("params player_id needs to be set");
         }
         $serie_id = $this->params['id'];
         $player_id = $this->params['player_id'];
         $service = new RankingListServiceImpl();
-        $rankingPlayer = $service->playerSerieRanking($serie_id, $player_id);
-        $this->set('rankingLeaguePlayer', $rankingPlayer);
-
+        $rankingPlayer = $service->playerRanking($serie_id, $player_id);
+        $this->set('rankingListPlayer', $rankingPlayer);
     }
 
 }

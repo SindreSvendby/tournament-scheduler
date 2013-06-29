@@ -1,7 +1,7 @@
 <?php
 namespace ts\seeding;
 
-use ts\rankingLeague\RankingLeagueServiceImpl;
+use ts\rankinglist\rankingLeague\RankingLeagueServiceImpl;
 use ts\ranking\RankingPlayerList;
 
 class SeedingManager
@@ -16,9 +16,12 @@ class SeedingManager
         $this->rankingleague_id = $rankingleague_id;
     }
 
+    /**
+     * @return array
+     */
     public function series() {
         $servise = new RankingLeagueServiceImpl();
-        return $servise->series($this->rankingleague_id);
+        return $servise->rankingLeagues($this->rankingleague_id);
     }
     /**
      * @return array

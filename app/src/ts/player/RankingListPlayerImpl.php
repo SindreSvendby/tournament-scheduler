@@ -1,31 +1,37 @@
 <?php
 
 
-namespace ts\rankingLeague\player;
+namespace ts\player;
 
-use ts\rankingLeague\RankingLeague;
+use ts\rankinglist\rankingLeague\RankingLeague;
 use ts\result\TournamentResult;
 use ts\player\Player;
 
-class RankingLeaguePlayerImpl implements RankingLeaguePlayer {
+class RankingListPlayerImpl implements RankingListPlayer {
 
-    private $rankingLeague;
+    private $type;
     private $tournamentResults;
     private $player;
     private $ranking;
 
+    /**
+     * @param $tournamentResults TournamentResult[]
+     * @param $rankingLeague RankingLeague
+     * @param $player Player
+     * @param $ranking int
+     */
     function __construct($tournamentResults, $rankingLeague, $player, $ranking) {
         $this->tournamentResults = $tournamentResults;
-        $this->rankingLeague = $rankingLeague;
+        $this->type = $rankingLeague;
         $this->player = $player;
         $this->ranking = $ranking;
     }
     /**
      * @return RankingLeague
      */
-    public function rankingLeague()
+    public function type()
     {
-        return $this->rankingLeague;
+        return $this->type;
     }
 
     /**
@@ -37,7 +43,7 @@ class RankingLeaguePlayerImpl implements RankingLeaguePlayer {
     }
 
     /**
-     * @return TournamentResult[] and Array of TournamentResult
+     * @return TournamentResult[] an array of TournamentResult
      */
     public function tournamentResults()
     {

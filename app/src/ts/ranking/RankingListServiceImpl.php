@@ -3,8 +3,7 @@
 
 namespace ts\ranking;
 
-
-use ts\tournament\SimpleTournamentImpl;
+use ts\rankinglist\serie\SerieListPlayerFactory;
 
 class RankingListServiceImpl implements RankingListService {
 
@@ -26,14 +25,17 @@ class RankingListServiceImpl implements RankingListService {
         return $rankingList->seedingList;
     }
 
-    public function playerSerieRanking($serie_id, $player_id) {
+    /**
+     * @param $serie_id
+     * @param $player_id
+     * @return \ts\player\RankingListPlayer
+     */
+    public function playerRanking($serie_id, $player_id) {
+
         $results = self::$DAO->getPlayerRankingForOneSeries($serie_id, $player_id);
-        print_a($results);
-        $rankingPlayers = array();
-        foreach($results as $result) {
-            $rankingPlayers[] = new RankingPlayer($result['place'], $result['points'],
-                new SimpleTournamentImpl($result['tid'], $result['tname']));
-        }
-        return $rankingPlayers;
+        $factory = new SerieListPlayerFactory();
+        $rankingListPlayer = $factory->createPlayer($results);
+
+        return $rankingListPlayer;
     }
 }

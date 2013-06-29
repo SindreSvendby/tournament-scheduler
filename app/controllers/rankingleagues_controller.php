@@ -1,7 +1,7 @@
 <?php
 
 use ts\seeding\SeedingManager;
-use \ts\rankingLeague\RankingLeagueServiceImpl;
+use \ts\rankinglist\rankingLeague\RankingLeagueServiceImpl;
 
 class RankingleaguesController extends MvcPublicController
 {
@@ -10,7 +10,6 @@ class RankingleaguesController extends MvcPublicController
         $seedingManager = new SeedingManager($this->object->id);
         $this->set('seedingList', $seedingManager->getSeedingList());
         $this->set('series', $seedingManager->series());
-        //$this->render_view('series/show');
     }
 
     function player(){

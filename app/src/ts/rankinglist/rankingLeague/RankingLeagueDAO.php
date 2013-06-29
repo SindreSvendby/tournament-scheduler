@@ -1,5 +1,6 @@
 <?php
-namespace ts\rankingLeague;
+namespace ts\rankinglist\rankingLeague;
+
 use ts\GenericDAO;
 
 class RankingLeagueDAO extends GenericDAO
@@ -23,8 +24,8 @@ class RankingLeagueDAO extends GenericDAO
                     and r.place != 0
                     and rl.id = $rankingleague_id
                     and pit.player_id = $player_id;
-                    ";
-        $statement = $this->pdo->query($sql);
+                    order by t.date DESC";
+        $statement = $this->fetchAll($sql);
         return $statement->fetchAll();
     }
 

@@ -1,17 +1,22 @@
 <?php
 
 
-namespace ts\serie;
+namespace ts;
+
+use ts\LinkEntity;
 
 
-class SimpleSerieImpl implements SimpleSerie {
+class LinkEntityImpl implements LinkEntity {
 
+    protected $id;
+    protected $name;
 
     function __construct($id, $name)
     {
         $this->id = $id;
         $this->name = $name;
     }
+
 
     public function name()
     {

@@ -1,18 +1,20 @@
 <?php
 
 
-namespace ts\rankingLeague\player;
+namespace ts\player;
 
-use ts\rankingLeague\RankingLeague;
+use ts\rankinglist\rankingLeague\SimpleRankingLeague;
 use ts\result\TournamentResult;
 use ts\player\Player;
+use ts\serie\SimpleSerie;
 
-interface RankingLeaguePlayer {
+interface RankingListPlayer {
 
     /**
-     * @return RankingLeague
+     * The type of the rankinglist, f.eks Serie or RankingLeague
+     * @return SimpleRankingLeague|SimpleSerie
      */
-    public function rankingLeague();
+    public function type();
 
     /**
      * @return int The ranking in the rankingLeague

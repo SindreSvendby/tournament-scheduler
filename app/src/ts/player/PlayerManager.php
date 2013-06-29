@@ -35,6 +35,9 @@ class PlayerManager
     }
 
 
+    /**
+     * @return mixed
+     */
     public function getRankingforAllRankingLeagues()
     {
         if ($this->rankingLeaguePoints != null) {
@@ -125,7 +128,8 @@ class PlayerManager
             )));
         foreach ($results as $result):
             if ($result->player1_id == $this->id):
-                $result->partner == new PlayerManager($result->player2_id); else:
+                $result->partner == new PlayerManager($result->player2_id);
+            else:
                 $result->partner == new PlayerManager($result->player1_id);
             endif;
         endforeach;

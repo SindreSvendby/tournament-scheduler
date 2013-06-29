@@ -6,7 +6,7 @@
         if (!empty($rankings)):
             echo "<table  style='border: 1px; margin: 20px; padding: 2px; text-align: center; width: 300px'><thead style='font-style: oblique'><tr><td>Rankingleague</td><td>Poeng</td></tr></thead><tbody>";
             foreach ($rankings as $ranking):
-                echo "<tr><td>" . display_rankingleague($ranking) . "</td> <td>" . $ranking->points . "</td></tr>";
+                echo "<tr><td>" . display_link_old($ranking, "rankingleagues") . "</td> <td>" . display_rankingleague_player_result_link($ranking, $player->id) . "</td></tr>";
             endforeach;
             echo "</tbody></table>";
         endif;

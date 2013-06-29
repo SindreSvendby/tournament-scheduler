@@ -20,7 +20,7 @@ if (empty($seedingList)) {
     echo "<thead><tr><td>Spiller</td><td>Poeng</td></tr></thead><tbody>";
     $place = 1;
     foreach ($seedingList as $seeding):
-        echo "<tr><td>$place. " . display_tournament_user($seeding->player) ."</td><td>". display_rankingleague_player_result_link($seeding) . "</td></tr>";
+        echo "<tr><td>$place. " . display_tournament_user($seeding->player) ."</td><td>". display_rankingleague_player_result_link($seeding, $seeding->player->ID) . "</td></tr>";
         $place++;
     endforeach;
     echo "</tbody></table>";

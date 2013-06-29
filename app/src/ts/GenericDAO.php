@@ -35,9 +35,12 @@ class GenericDAO
      */
     protected function fetchAll($sql)
     {
+        print_a($sql);
         $statement = $this->pdo->query($sql);
         if (is_object($statement)):
-            return $statement->fetchAll(\PDO::FETCH_ASSOC);
+            $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            print_a($result);
+            return $result;
         else:
             return false;
         endif;

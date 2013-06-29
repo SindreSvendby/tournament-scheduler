@@ -1,8 +1,10 @@
 <?php
-namespace ts\rankingLeague;
 
-use ts\serie\SimpleSerie;
-use ts\serie\SimpleSerieImpl;
+namespace ts\rankinglist\rankingLeague;
+
+use ts\player\RankingListPlayer;
+use ts\player\RankingListPlayerFactory;
+
 
 class RankingLeagueServiceImpl implements RankingLeagueService {
 
@@ -13,26 +15,17 @@ class RankingLeagueServiceImpl implements RankingLeagueService {
             self::$DAO = new RankingLeagueDAO();
         }
     }
-    /**
-     * @param $tournament int The tournament_id
-     * @return RankingLeague a instance of RankingLeague based on the tournament_id
-     */
-    public function rankingLeagueFromTournament($tournament)
-    {
-        $mvc_tournament = mvc_model("Tournament");
-        //$mvc_tournament-> // get series
-        //get rankingleague and return that
-    }
 
     /**
      * @param $rankingleague_id
      * @param $player_id
-     * @return player\RankingLeaguePlayer
+     * @return RankingListPlayer
      */
     public function playerRanking($rankingleague_id, $player_id)
     {
         $results = self::$DAO->playerRanking($rankingleague_id, $player_id);
-        $rankingLeaguePlayer = player\RankingLeaguePlayerFactory::createPlayer($results);
+        $factory = new RankingLeaguePlayerFactory();
+        $rankingLeaguePlayer = $factory->createPlayer($results);
         return $rankingLeaguePlayer;
     }
 
@@ -40,13 +33,12 @@ class RankingLeagueServiceImpl implements RankingLeagueService {
      * @param $rankingLeague_id
      * @return array SimpleSerie[]
      */
-    public function series($rankingLeague_id) {
+    public function rankingLeagues($rankingLeague_id) {
         $results = self::$DAO->series($rankingLeague_id);
         $series = array();
         foreach($results as $result) {
-            $series[] = new SimpleSerieImpl($result['id'], $result['name']);
+            $series[] = new SimpleRankingLeagueImpl($result['id'], $result['name']);
         }
         return $series;
     }
-
 }

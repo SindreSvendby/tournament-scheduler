@@ -35,12 +35,16 @@ function display_tournament_user($user) {
     return "<a href=\"". site_url() . "/players/" .$user->id . "\">" . $user->display_name . "</a>";
 }
 
+function display_Player_link($player) {
+    return "<a href=\"". site_url() . "/players/" .$player->id() . "\">" . $player->name() . "</a>";
+}
+
 /**
- * @param rankingLegue rankingLeague object
+ * @param $rankingList rankingLeague object
  * @return string html
  */
-function display_rankingleague($rankingLegue) {
-    return "<a href=\"". site_url() . "/rankingleagues/" .$rankingLegue->id . "\">" . $rankingLegue->name . "</a>";
+function display_RankingList($rankingList, $path) {
+    return "<a href=\"". site_url() . "/rankingleagues/" .$rankingList->id() . "\">" . $rankingList->name() . "</a>";
 }
 
 
@@ -61,6 +65,15 @@ function display_Tournament_link($tournament) {
     return "<a href=\"". site_url() . "/tournaments/" .$tournament->id() . "\">" . $tournament->name() . "</a>";
 }
 
+function display_RankingLeague_link($rankingLeague) {
+    return display_link($rankingLeague, "rankingLeagues");
+}
+
+function display_link_old($object, $path) {
+    return "<a href=\"". site_url() . "/".$path ."/" .$object->id . "\">" . $object->name . "</a>";
+}
+
+
 function display_Series_link($series) {
     return display_link($series, "series");
 }
@@ -79,9 +92,9 @@ function display_link($object, $path) {
  * @param $ranking ts\ranking\RankingPlayer
  * @return string html link
  */
-function display_rankingleague_player_result_link($ranking) {
+function display_rankingleague_player_result_link($ranking, $player_id) {
     return "<a href=\"". site_url() . "/rankingleagues/player/" .$ranking->id . "/?player_id=".
-    $ranking->player->ID."\">" . $ranking->points . "</a>";
+    $player_id."\">" . $ranking->points . "</a>";
 }
 
 function display_serie_player_result_link($ranking) {

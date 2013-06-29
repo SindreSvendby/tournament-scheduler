@@ -31,7 +31,10 @@ class RankingListDAO extends GenericDAO {
 
     public function getPlayerRankingForOneSeries($serie_id, $player_id) {
         $wp = $this->table_prefix;
-        $sql = "SELECT r.place, r.points, t.name as tname, t.id as tid
+        $sql = "SELECT r.place, r.points, r.tournament_id,
+                t.name as tournamentName,
+                s.name as sname, s.id as sid,
+                pit.player_id
           FROM ".$wp."series s, ".$wp."tournaments t,
                ".$wp."results r, ".$wp."teams team, ".$wp."playersinteam pit
           WHERE t.serie_id = s.id
@@ -41,7 +44,6 @@ class RankingListDAO extends GenericDAO {
           AND s.id = " . $serie_id."
           AND pit.player_id = " . $player_id ."
           AND r.points > 0
-          GROUP BY player_id
           ORDER BY points DESC";
         return $this->fetchAll($sql);
     }
