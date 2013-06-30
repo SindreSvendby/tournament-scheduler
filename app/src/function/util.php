@@ -18,6 +18,16 @@ function display_team($team) {
     return $output;
 }
 
+function options_with_name($objects) {
+    $option_html = "";
+    foreach($objects as $object) {
+        $option_html .= "<option>";
+        $option_html .= $object->name();
+        $option_html .="</option>";
+    }
+    return $option_html;
+}
+
 /**
  * @param $team TeamManager
  * @return string html

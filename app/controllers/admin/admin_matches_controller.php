@@ -1,5 +1,8 @@
 <?php
 
+use ts\match\MatchServiceImpl;
+use ts\tournament\TournamentServiceImpl;
+
 class AdminMatchesController extends MvcAdminController {
 	
 	var $default_columns = array('id', 'name');
@@ -18,6 +21,16 @@ class AdminMatchesController extends MvcAdminController {
         $this->set_object();
     }
 
+
+    public function tournament() {
+
+        $tournamentService = new TournamentServiceImpl();
+        $tournament = $tournamentService->tournament($this->params['id']);
+        $matchService = new MatchServiceImpl();
+        $matches = $matchService->matches($tournament->id());
+        $this->set('matches', $matches);
+        $this->set('tournament', $tournament);
+    }
 
     private function set_tournaments() {
         $this->load_model('Tournament');

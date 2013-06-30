@@ -14,9 +14,14 @@
 <h3>Results / Teams </h3>
 <?php
 $url = MvcRouter::admin_url(array('controller' => 'results', 'action' => 'edit_result', 'id' => $object->__id));
-echo '<a href="'.$url.'">Edit Results</a>';
+echo '<a href="'.$url.'">Add/Edit Matches</a>';
 ?>
 
 <h3>Matches</h3>
-<p>Not yet possible</p>
+<p>
+    <?php
+    $url = MvcRouter::admin_url(array('controller' => 'matches', 'action' => 'tournament', 'id' => $object->__id));
+    echo '<a href="'.$url.'">Add/Edit Matches</a>';
+    ?>
+</p>
 

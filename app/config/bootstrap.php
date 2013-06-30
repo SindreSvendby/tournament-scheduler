@@ -9,29 +9,32 @@ MvcConfiguration::set(array(
     'Debug' => false
 ));
 
+$TOURNAMENT_SCEHDURER_ADMIN_RIGHTS = 'delete_others_pages';
 
 MvcConfiguration::append(array(
     'AdminPages' => array(
         'tournaments' => array(
-            'add' => array('capability' => 'delete_others_pages'),
-            'edit' => array('capability' => 'delete_others_pages'),
-            'delete' => array('capability' => 'delete_others_pages'),
-            'results' => array('capability' => 'delete_others_pages'),
-            'close_registration' => array('capability' => 'delete_others_pages', 'in_menu' => false),
-            'open_registration' => array('capability' => 'delete_others_pages', 'in_menu' => false),
-            'capability' => 'delete_others_pages'),
-        'teams' => array('hide_menu' => true),
-        'matches' => array('hide_menu' => true),
+            'add' => array('capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS),
+            'edit' => array('capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS),
+            'delete' => array('capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS),
+            'results' => array('capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS),
+            'close_registration' => array('capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS, 'in_menu' => false),
+            'open_registration' => array('capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS, 'in_menu' => false),
+            'capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS),
+        'teams' => array('hide_menu' => false),
+        'matches' => array(
+            'tournament' => array('capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS, 'in_menu' => false),
+            'capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS),
         'results' => array(
-            'edit_result' => array('capability' => 'delete_others_pages',
+            'edit_result' => array('capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS,
                 'in_menu' => false),
-            'delete' => array('capability' => 'delete_others_pages',
+            'delete' => array('capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS,
                 'in_menu' => false),
-            'add_team' => array('capability' => 'delete_others_pages',
+            'add_team' => array('capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS,
                 'in_menu' => false),
             'save_results',
             'choose_tournament_to_edit',
-            'capability' => 'delete_others_pages'
+            'capability' => $TOURNAMENT_SCEHDURER_ADMIN_RIGHTS
         )
     )
 ));
