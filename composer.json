@@ -1,15 +1,25 @@
 {
     "name": "sindresvendby/tournament-scheduler",
     "description": "Tournament system for arranging a series of beach volleyball tournaments",
-    "minimum-stability": "? not sure what this is",
     "authors": [
         {
             "name": "Sindre Øye Svendby",
             "email": "sinsvend@gmail.com"
         }
     ],
-    "required-dev": [
-        { "PHPUnit/PHPUnit" : "*" },
-        { "Phing/Phing" : "*" }
-    ]
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "phing/phing": "2.6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ts\\" : "app/src/ts"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ts\\" : "test/ts"
+        }
+    }
+
 }

@@ -6,6 +6,14 @@
     <!-- Target: prepare                               -->
     <!-- ============================================  -->
     <target name="prepare">
+
+        <echo msg="Running integration test"/>
+        <exec command="php vendor/phpunit/phpunit/phpunit"
+              dir="."
+              checkreturn="true"
+              passthru="true"/>
+
+
         <echo msg="Making directory ./build and remove old zipfile"/>
         <mkdir dir="./build"/>
         <delete file="tournament_scheduler.zip" verbose="true" failonerror="false"/>

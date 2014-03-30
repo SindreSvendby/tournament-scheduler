@@ -3,6 +3,10 @@
 
 namespace ts;
 
+/**
+ * TODO: seperate config out in a config file that is not in a vcs...
+ * @package ts
+ */
 class GenericDAO
 {
 
@@ -11,17 +15,12 @@ class GenericDAO
     private $dbname;
     private $username;
     private $password;
-    protected  $table_prefix;
+    protected $table_prefix;
 
     function __construct()
     {
         global $wpdb;
-        //TODO: Fix hardcoding
-        //TODO: Do static
-        $this->dbname = "test";
-        $this->host = "localhost";
-        $this->username = "root";
-        $this->password = "";
+        $this->configureDatabase();
         $this->table_prefix = $wpdb->prefix;
 
         if ($this->pdo == null):
@@ -44,5 +43,22 @@ class GenericDAO
         else:
             return false;
         endif;
+    }
+
+    private function configureDatabase()
+    {
+        $this->setValueIfNotDefinedByWordpress("DB_NAME", "wordpress", "dbName");
+        $this->setValueIfNotDefinedByWordpress("DB_USER", "root", "username");
+        $this->setValueIfNotDefinedByWordpress("DB_PASSWORD", "", "password");
+        $this->setValueIfNotDefinedByWordpress("DB_HOST", "localhost", "host");
+    }
+
+    private function setValueIfNotDefinedByWordpress($constantName, $backupValue, $property)
+    {
+        if (defined($constantName)) {
+            $this->$property = constant($constantName);
+        } else {
+            $this->$property = $backupValue;
+        }
     }
 }

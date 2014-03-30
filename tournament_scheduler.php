@@ -9,6 +9,8 @@ Version: 0.6-SNAPSHOT
 Author URI:
 */
 
+include __DIR__ . "/vendor/autoload.php";
+
 //Not triggered on update since 3.1
 register_activation_hook(__FILE__, 'tournament_scheduler_activate');
 register_deactivation_hook(__FILE__, 'tournament_scheduler_deactivate');

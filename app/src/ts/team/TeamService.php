@@ -16,7 +16,7 @@ class TeamService {
      * @param $player_ids string comma separated string with the player id. F.eks; 1,5
      * @return int the value of the team_id, or -1 if the team do not exist.
      */
-    private function getTeamId($player_ids)
+    public function getTeamId($player_ids)
     {
         $result = $this->dao->getTeamId($player_ids);
         if (!empty($result)):

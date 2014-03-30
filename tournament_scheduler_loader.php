@@ -32,6 +32,7 @@ class TournamentSchedulerLoader extends MvcPluginLoader
     {
         global $wpdb;
         $sql = "CREATE TABLE {$wpdb->prefix}tournament_responsibles (
+
                 id mediumint(9) NOT NULL  PRIMARY KEY AUTO_INCREMENT,
                 name tinytext NOT NULL,
                 phone tinytext NOT NULL,
